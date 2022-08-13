@@ -1,0 +1,47 @@
+<html>
+	<head th:replace="~{base :: head}"></head>
+	
+	<body>
+		<div th:replace="~{base :: logo}" ></div>
+				
+		<div class="container">
+		
+			<div th:replace="~{base :: titulo('Novo Pedido')}"></div>
+			
+			<div class="card mt-3"> 
+				<form th:object="${requisicaoNovoPedido}" class="card-body" action="/pedido/novo" method="POST">
+					<div  class="mb-3">
+						<label class="form-label" for="nomeProduto">Produto</label>
+						<input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control"  placeholder="Nome do produto"> <!-- com o *{} acessamos o atributo da requisicaoNovoPedido e o fild gerencia name,id e value -->
+						<small>Informe qual o nome do produto</small>
+						<div class="invalid-feedback" th:errors="*{nomeProduto}">
+						Erros do nome do Produto
+						</div>				
+					</div>
+					
+					<div class="mb-3">
+						<label class="form-label" for="urlProduto">url</label>
+						<input th:field="*{urlProduto}" th:errorclass="is-invalid" class="form-control" placeholder="url do produto">
+						<small>Procure em um site o produto que você deseja e cole a url da página aqui.</small>
+						<div class="invalid-feedback" th:errors="*{urlProduto}">
+						Errro da url do Produto
+						</div>				
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="urlImagem">Imagem</label>
+						<input th:field="*{urlImagem}" th:errorclass="is-invalid" class="form-control" placeholder="url da imagem">
+						<small>Copie a url de uma boa imagem do produto e cole aqui a conseguir compradores</small>
+						<div class="invalid-feedback" th:errors="*{urlImagem}">
+						Errro da url da Imagem
+						</div>				
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="descricao">Descricao</label>
+						<textarea th:field="*{descricao}" class="form-control" placeholder="Adicione detalhes importante para ajudar o comprador"></textarea>
+					</div>
+					<button class="btn btn-primary" type="subimit">Cadastrar</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
